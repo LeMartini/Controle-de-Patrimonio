@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    lang="en">
+
+    <head th:include="layout :: htmlhead"></head>
+
+    <body>
+        <nav th:replace="layout :: menu">(menu)</nav>
+        <main class="container">
+            <a th:href="@{/centroCusto/novo}"
+                class="btn btn-primary">Novo Centro de Custo</a>
+            <table class="table" id="tabcentroCusto">
+                <thead>
+                    <tr>
+                        <th>Id Centro de Custo</th>
+                        <th>Nome Centro de Custo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="umCentroCusto : ${listacentroCusto}">
+                <!-- <tr th:each="umBem : ${listaBem}"> -->
+                        <td th:text="${umCentroCusto.idCentroCusto}"></td>
+                        <td th:text="${umCentroCusto.nmCentroCusto}"></td>
+                        <!-- <td><a class="btn btn-secondary" th:href="@{'/bem/alterar/' + ${umBem.id }}">Alterar</a>
+                          <td><a class="btn btn-danger" th:href="@{'/bem/remover/' + ${umBem.id }}">Excluir</a>
+                        </td> --> <!-- alterado -->
+                        <td><a class="btn btn-secondary" th:href="@{'/centroCusto/alterar/' + ${umCentroCusto.idCentroCusto}}">Alterar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{'/centroCusto/remover/' + ${umCentroCusto.idCentroCusto}}">Excluir</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <div class="modal" tabindex="-1" id="modaldepreciacao">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Excluir bem</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Confirma a exclusão do bem?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                  <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div th:include="layout :: footer">(footer)</div>
+        <script th:src="@{/script.js}"></script>
+    </body>
+</html>

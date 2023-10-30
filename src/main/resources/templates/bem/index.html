@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    lang="en">
+
+    <head th:include="layout :: htmlhead"></head>
+
+    <body>
+        <nav th:replace="layout :: menu">(menu)</nav>
+        <main class="container">
+            <a th:href="@{/bem/novo}"
+                class="btn btn-primary">Novo Bem</a>
+            <table class="table" id="tabbem">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tipo Bem</th>
+                        <th>Nome Marca</th>
+                        <th>Nome Modelo</th>
+                        <th>Nome Item</th>
+                        <th>Estado de Conservação</th>
+                        <th>Local Inicial</th>
+                        <th>Local Atual</th>
+                        <th>Forma de Aquisição</th>
+                        <th>Data da Depreciação</th>
+                        <th>Situação do Bem</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="umBem : ${listabem}">
+                <!-- <tr th:each="umBem : ${listaBem}"> -->
+                        <td th:text="${umBem.idBem}"></td>
+                        <td th:text="${umBem.tpBem}"></td>
+                        <td th:text="${umBem.nmMarca}"></td>
+                        <td th:text="${umBem.nmModelo}"></td>
+                        <td th:text="${umBem.nmItem}"></td>
+                        <td th:text="${umBem.estadoConservacao}"></td>
+                        <td th:text="${umBem.localInicial}"></td>
+                        <td th:text="${umBem.localAtual}"></td>
+                        <td th:text="${umBem.formaAquisicao}"></td>
+                        <td th:text="${umBem.dtDepreciacao}"></td>
+                        <td th:text="${umBem.situacaoBem}"></td>
+                        <!-- <td><a class="btn btn-secondary" th:href="@{'/bem/alterar/' + ${umBem.id }}">Alterar</a>
+                          <td><a class="btn btn-danger" th:href="@{'/bem/remover/' + ${umBem.id }}">Excluir</a>
+                        </td> --> <!-- alterado -->
+                        <td><a class="btn btn-secondary" th:href="@{'/bem/alterar/' + ${umBem.idBem}}">Alterar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{'/bem/remover/' + ${umBem.idBem}}">Excluir</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <div class="modal" tabindex="-1" id="modaldepreciacao">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Excluir bem</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Confirma a exclusão do bem?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                  <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div th:include="layout :: footer">(footer)</div>
+        <script th:src="@{/script.js}"></script>
+    </body>
+</html>

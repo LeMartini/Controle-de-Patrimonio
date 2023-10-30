@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://www.thymeleaf.org"
+    lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FABSOFT2023</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: gray;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+            padding-top: 40px; 
+        }
+
+        .nav {
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            background-color: #ff8c00;
+            color: white;
+            padding: 10px 0;
+            text-align: left; 
+            margin-bottom: 20px;
+            padding-left: 20px;
+            text-align: center;
+        }
+
+        .nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 800px; 
+            width: 700px; 
+            margin: 0 auto;
+            padding: 20px 40px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+    </style>
+</head>
+    <body>
+        <nav class="nav">
+            <a href="#"><strong> Projeto Controle de Patrimonio </strong></a>
+            <a href="/">Home</a>
+            <a href="/bem">Bem</a>
+            <a href="/depreciacao">Depreciação</a>
+            <a href="/imovel">Imóvel</a>
+            <a href="/infoFiscal">Informação Fiscal</a>
+            <a href="/centroCusto">Centro de Custo</a>
+            <a href="/item">Item</a>
+            <a href="/marca">Marca</a>
+            <a href="/movel">Movel</a>
+            <a href="/movimentacao">Movimentação</a>
+        </nav>   
+        <main class="container">
+            <!-- <form th:action="@{/bem/(form)}" method="POST" th:object="${bem}"> -->
+                    <form th:action="@{/bem/save}" method="POST" th:object="${bem}">
+
+                        <!-- <input type="hidden" th:field="*{id}"> -->
+                        <input type="hidden" th:field="*{idBem}">
+
+                        <!-- <div class="form-group">
+                            <label for="txttpBem">Tipo Bem</label>
+                            <input type="text" class="form-control" th:field="*{Tipo Bem}" id="txttpBem">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txttpBem">Tipo Bem</label>
+                            <input type="text" class="form-control" th:field="*{tpBem}" id="txttpBem">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtNmMarca">Nome Marca</label>
+                            <input type="text" class="form-control" th:field="*{nmMarca}" id="txtNmMarca">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtNmMarca">Nome Marca</label>
+                            <input type="text" class="form-control" th:field="*{nmMarca}" id="txtNmMarca">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtNmModelo">Nome Modelo</label>
+                            <input type="text" class="form-control" th:field="*{nmModelo}" id="txtNmModelo">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtNmModelo">Nome Modelo</label>
+                            <input type="text" class="form-control" th:field="*{nmModelo}" id="txtNmModelo">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtNmItem">nmItem</label>
+                            <input type="text" class="form-control" th:field="*{nmItem}" id="txtNmItem">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtNmItem">nmItem</label>
+                            <input type="text" class="form-control" th:field="*{nmItem}" id="txtNmItem">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtEstadoConservacao">Estado de Conservação</label>
+                            <input type="text" class="form-control" th:field="*{estadoConservacao}" id="txtEstadoConservacao">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtEstadoConservacao">Estado de Conservação</label>
+                            <input type="text" class="form-control" th:field="*{estadoConservacao}" id="txtEstadoConservacao">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtLocalInicial">Local Inicial</label>
+                            <input type="text" class="form-control" th:field="*{localInicial}" id="txtLocalInicial">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtLocalInicial">Local Inicial</label>
+                            <input type="text" class="form-control" th:field="*{localInicial}" id="txtLocalInicial">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtLocalAtual">Local Atual</label>
+                            <input type="text" class="form-control" th:field="*{localAtual}" id="txtLocalAtual">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtLocalAtual">Local Atual</label>
+                            <input type="text" class="form-control" th:field="*{localAtual}" id="txtLocalAtual">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtFormaAquisicao">Forma de Aquisição</label>
+                            <input type="text" class="form-control" th:field="*{formaAquisicao}" id="txtFormaAquisicao">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtFormaAquisicao">Forma de Aquisição</label>
+                            <input type="text" class="form-control" th:field="*{formaAquisicao}" id="txtFormaAquisicao">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtDtDepreciacao">Data de Depreciação</label>
+                            <input type="date" class="form-control" th:field="*{dtDepreciacao}" id="txtDtDepreciacao">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtDtDepreciacao">Data de Depreciação</label>
+                            <input type="date" class="form-control" th:field="*{dtDepreciacao}" id="txtDtDepreciacao">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtPercentualDepreciacao">Percentual de Depreciação</label>
+                            <input type="text" class="form-control" th:field="*{percentualDepreciacao}" id="txtPercentualDepreciacao">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtPercentualDepreciacao">Percentual de Depreciação</label>
+                            <input type="text" class="form-control" th:field="*{percentualDepreciacao}" id="txtPercentualDepreciacao">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="txtSituacaoBem">Situação do Bem</label>
+                            <input type="text" class="form-control" th:field="*{situacaoBem}" id="txtSituacaoBem">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="txtSituacaoBem">Situação do Bem</label>
+                            <input type="text" class="form-control" th:field="*{situacaoBem}" id="txtSituacaoBem">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <button type="submit" class="btn btn-primary"> Enviar </button>
+                        </div> -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                Enviar
+                            </button>
+                        </div>
+
+                    </form>
+                </main>
+            </div>
+            <div th:include="layout :: footer">(footer)</div>
+        </body>
+    </html>
